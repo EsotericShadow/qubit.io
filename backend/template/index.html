@@ -1,41 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>{{TITLE}}</title>
   <style>body { margin: 0; overflow: hidden; }</style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
-  <script>
-    // Setup scene
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, innerWidth/innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(innerWidth, innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    const video = document.createElement('video');
-    video.src = './cube_texture.mp4';
-    video.loop = true;
-    video.muted = true;
-    video.play();
-
-    const texture = new THREE.VideoTexture(video);
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ map: texture });
-    const cube = new THREE.Mesh(geometry, [
-      material, material, material, material, material, material
-    ]);
-    scene.add(cube);
-    camera.position.z = 3;
-
-    function animate() {
-      requestAnimationFrame(animate);
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-      renderer.render(scene, camera);
-    }
-    animate();
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
+<script src="script.js"></script>
+<script>
+  initCube("{{TEXTURE}}", [
+    { title: "{{TITLE1}}", link: "{{LINK1}}" },
+    { title: "{{TITLE2}}", link: "{{LINK2}}" },
+    { title: "{{TITLE3}}", link: "{{LINK3}}" },
+    { title: "{{TITLE4}}", link: "{{LINK4}}" },
+    { title: "{{TITLE5}}", link: "{{LINK5}}" },
+    { title: "{{TITLE6}}", link: "{{LINK6}}" }
+  ]);
+</script>
 </body>
 </html>
