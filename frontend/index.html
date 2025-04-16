@@ -1,20 +1,53 @@
-
+<!-- frontend/index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Create Your Neon Cube</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Cube Generator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <form id="cubeForm">
-    <h2>Create Your 3D Cube</h2>
-    <input name="username" placeholder="Your name / brand" required />
+  <form id="cubeForm" enctype="multipart/form-data">
+    <h2>Create Your 3D Neon Cube</h2>
+    <input name="username" placeholder="Your brand or name" required />
 
-    <label>Face 1 Link + Title</label>
-    <input name="face1_link" placeholder="https://example.com" required />
-    <input name="face1_title" placeholder="Title for Face 1" required />
+    <!-- Loop through 6 cube faces -->
+    <div class="faces">
+      <h3>Cube Faces</h3>
+      <div class="face" data-face="1">
+        <label>Face 1</label>
+        <input name="face1_title" placeholder="Face 1 Title" required />
+        <input name="face1_link" placeholder="Face 1 URL" required />
+      </div>
+      <div class="face" data-face="2">
+        <label>Face 2</label>
+        <input name="face2_title" placeholder="Face 2 Title" required />
+        <input name="face2_link" placeholder="Face 2 URL" required />
+      </div>
+      <div class="face" data-face="3">
+        <label>Face 3</label>
+        <input name="face3_title" placeholder="Face 3 Title" required />
+        <input name="face3_link" placeholder="Face 3 URL" required />
+      </div>
+      <div class="face" data-face="4">
+        <label>Face 4</label>
+        <input name="face4_title" placeholder="Face 4 Title" required />
+        <input name="face4_link" placeholder="Face 4 URL" required />
+      </div>
+      <div class="face" data-face="5">
+        <label>Face 5</label>
+        <input name="face5_title" placeholder="Face 5 Title" required />
+        <input name="face5_link" placeholder="Face 5 URL" required />
+      </div>
+      <div class="face" data-face="6">
+        <label>Face 6</label>
+        <input name="face6_title" placeholder="Face 6 Title" required />
+        <input name="face6_link" placeholder="Face 6 URL" required />
+      </div>
+    </div>
 
-    <label>Cube Texture</label>
+    <label>Cube Texture (video or image)</label>
     <input type="file" name="texture" accept="video/*,image/*" required />
 
     <label>Theme</label>
@@ -23,20 +56,22 @@
       <option value="hologram">Hologram</option>
     </select>
 
-    <button type="submit">Generate Cube Site</button>
+    <button type="submit">Generate Cube</button>
   </form>
 
   <script>
-    document.getElementById('cubeForm').onsubmit = async (e) => {
+    document.getElementById('cubeForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const formData = new FormData(e.target);
-      const res = await fetch('http://localhost:5000/generate', {
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const res = await fetch('/api/generate', {
         method: 'POST',
         body: formData
       });
-      const data = await res.json();
-      alert("Your live cube site is at: " + data.url);
-    };
+      const result = await res.json();
+      alert(`Your cube is live at: https://${result.url}`);
+    });
   </script>
 </body>
 </html>
