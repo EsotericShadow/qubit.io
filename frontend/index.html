@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Your Neon Cube</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <form id="cubeForm">
+    <h2>Create Your 3D Cube</h2>
+    <input name="username" placeholder="Your name / brand" required />
+
+    <label>Face 1 Link + Title</label>
+    <input name="face1_link" placeholder="https://example.com" required />
+    <input name="face1_title" placeholder="Title for Face 1" required />
+
+    <label>Cube Texture</label>
+    <input type="file" name="texture" accept="video/*,image/*" required />
+
+    <label>Theme</label>
+    <select name="theme">
+      <option value="neon">Neon</option>
+      <option value="hologram">Hologram</option>
+    </select>
+
+    <button type="submit">Generate Cube Site</button>
+  </form>
+
+  <script>
+    document.getElementById('cubeForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const res = await fetch('http://localhost:5000/generate', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      alert("Your live cube site is at: " + data.url);
+    };
+  </script>
+</body>
+</html>

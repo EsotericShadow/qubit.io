@@ -1,0 +1,32 @@
+
+body {
+  background: #0f0f1f;
+  color: #fff;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+form {
+  background: #1a1a2a;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px #00f0ff;
+  width: 400px;
+}
+input, select {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: #111;
+  color: #0ff;
+  border: 1px solid #0ff;
+}
+button {
+  width: 100%;
+  background: #0ff;
+  color: #000;
+  padding: 0.7rem;
+  font-weight: bold;
+  cursor: pointer;
+}

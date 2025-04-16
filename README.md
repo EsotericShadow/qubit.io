@@ -1,1 +1,1 @@
-#Qubit.io
+# Neon Cube Generator
